@@ -1,0 +1,21 @@
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+#myDIV {
+    display: none;
+}
+
+#btn-link {
+    height: 20px;
+    width: 100px;
+    position: absolute;
+    top: 80%;
+    border: 3px solid green;
+}
+

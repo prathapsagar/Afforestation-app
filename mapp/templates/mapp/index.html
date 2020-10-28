@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AFFORESTATION</title>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKm5uOhkrurRq00y9s1M5RkPassmkHwPg&callback=initMap&libraries=&v=weekly"
+        defer></script>
+
+    <style type="text/css">
+        h1 {
+            text-align: center;
+        }
+
+        #map {
+            height: 400px;
+            /* The height is 400 pixels */
+            width: 100%;
+            /* The width is the width of the web page */
+        }
+
+        /* Set the size of the div element that contains the map */
+    </style>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of Uluru
+            const uluru = { lat: -25.344, lng: 131.036 };
+            // The map, centered at Uluru
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: uluru,
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
+    <h1>AFFORESTATION APP</h1>
+    <div id="map"></div>
+    <div class="container">
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myDIV");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+        </script>
+        <form name="mform" action="{% url 'mapp:map'%}" method="post">
+            {% csrf_token %}
+            <br><br>
+            <button type="submit" name="map_create" value="1" class="btn btn-success">Current
+                Location</button>
+            <br><br>
+        </form>
+        <script>
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(successFunction);
+            } else {
+                alert('It seems like Geolocation, which is required for this page, is not enabled in your browser. Please use a browser which supports it.');
+            }
+            function successFunction(position) {
+                test = position.coords.latitude + "," + position.coords.longitude;
+                document.forms['mform']['map_create'].value = test;
+            }
+        </script>
+        <button onclick="myFunction()" class="btn btn-success">Custom Input</button>
+        <br><br>
+        <div id="myDIV" class="form-group">
+            <form action="{% url 'mapp:map2'%}" method="post">
+                {% csrf_token %}
+                <p>Latitude:</p>
+                <input type="text" class="form-control" name="latitude" placeholder="Enter custom latitude">
+                <br><br>
+                <p>Longitude:</p>
+                <input type="text" class="form-control" name="longitude" placeholder="Enter custom longitude">
+                <br>
+                <button type="submit" name="map_create2" class="btn btn-secondary">GO</button>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

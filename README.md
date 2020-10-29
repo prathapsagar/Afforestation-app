@@ -1,6 +1,8 @@
 # Afforestation-app
 Afforestation hotspot detector
-Step 0 : Clone only the mysite folder
+Step 0 : Clone only the mysite folder. 
+
+Note: In index.html, search for YOUR_API_KEY and replace it with your api key which is available on developers.google.com>get an api key (from the side bar)
 
 Step 1: Download the ML model from https://drive.google.com/file/d/1SdLZmfR2wYVW_6TzSxHkBRcOj0R5uoHz/view?usp=sharing and put it into mapp/model folder along with the json file.
 
